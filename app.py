@@ -3,6 +3,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+print("Teste")
+
 def get_dolar_uol():
     """
     Try to scrape UOL’s static HTML for the “Dólar Comercial” heading.
