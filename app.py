@@ -10,4 +10,3 @@ soup = BeautifulSoup(resp.text, "html.parser")
 dolar_compra = soup.select_one("input#nacional")["value"]
 
 print("Dólar COMPRA:", dolar_compra)
-
