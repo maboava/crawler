@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def validar_csv(caminho_arquivo: str = "resultados.csv"):
@@ -67,7 +67,7 @@ def sites():
         except Exception:
             continue
 
-        data_hora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+        data_hora = (datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M:%S')
         grava_csv(data_hora, fonte['id'], fonte['url'], valor)
 
 
