@@ -74,3 +74,5 @@ def sites():
 if __name__ == "__main__":
     validar_csv()
     sites()
+    print("Coleta concluída.")
+    
