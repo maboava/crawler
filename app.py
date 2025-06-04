@@ -3,13 +3,14 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 import csv
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo  
 
 
 def validar_csv(caminho_arquivo: str = "resultados.csv"):
     """
     Garante que o arquivo CSV exista antes de iniciar a coleta.
     - Se o arquivo não existir, cria um arquivo vazio.
-    """
+    """ 
     caminho = Path(caminho_arquivo)
     caminho.touch(exist_ok=True)
 
@@ -46,7 +47,7 @@ def sites():
     - Se ocorrer erro na requisição ou extração, ignora a fonte.
     """
     fontes = [
-        {"id": "Dólar Hoje", "url": "https://www.dolarhoje.com/", "referencia": "nacional"},
+        {"id": "Dólar Hoje", "url": "https://www.doldddarhoje.com/", "referencia": "nacional"},
         {"id": "Wise",      "url": "https://wise.com/br/currency-converter/dolar-hoje", "referencia": "target-input"},
         {"id": "Melhor Câmbio", "url": "https://www.melhorcambio.com/dolar-hoje", "referencia": "comercial"}
     ]
@@ -58,6 +59,7 @@ def sites():
             )
             resposta.raise_for_status()
         except requests.RequestException:
+            print("[ERRO] Não foi possível acessar", fonte['url'])
             continue
 
         try:
@@ -67,12 +69,16 @@ def sites():
         except Exception:
             continue
 
-        data_hora = (datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M:%S')
+        # Ajusta para pegar o horário de Brasília
+        agora_brasilia = datetime.now(ZoneInfo("America/Sao_Paulo"))
+        data_hora = agora_brasilia.strftime('%d/%m/%Y %H:%M:%S')
+
         grava_csv(data_hora, fonte['id'], fonte['url'], valor)
+
 
 
 if __name__ == "__main__":
     validar_csv()
     sites()
-    print("Coleta concluída.")
+    print("[SUCESSO] Código finalizado, confira o arquivo CSV.")
     
