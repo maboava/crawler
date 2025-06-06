@@ -47,7 +47,7 @@ def sites():
     - Se ocorrer erro na requisição ou extração, ignora a fonte.
     """
     fontes = [
-        {"id": "Dólar Hoje", "url": "https://www.doldddarhoje.com/", "referencia": "nacional"},
+        {"id": "Dólar Hoje", "url": "https://www.dolarhoje.com/", "referencia": "nacional"},
         {"id": "Wise",      "url": "https://wise.com/br/currency-converter/dolar-hoje", "referencia": "target-input"},
         {"id": "Melhor Câmbio", "url": "https://www.melhorcambio.com/dolar-hoje", "referencia": "comercial"}
     ]
