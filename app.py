@@ -65,7 +65,7 @@ def sites():
         try:
             sopa = BeautifulSoup(resposta.text, 'html.parser')
             bruto = sopa.select_one(f"input#{fonte['referencia']}")["value"]
-            valor = float(bruto.replace(',', '.'))
+            valor = float(bruto.replace(',', '.')) #troca a vírgula do dolar por ponto para não dar erro no código ao tratar o dado como float
         except Exception:
             continue
 
