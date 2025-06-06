@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 import csv
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo  
 
 
@@ -76,9 +76,7 @@ def sites():
         grava_csv(data_hora, fonte['id'], fonte['url'], valor)
 
 
-
-if __name__ == "__main__":
-    validar_csv()
-    sites()
-    print("[SUCESSO] Código finalizado, confira o arquivo CSV.")
+validar_csv()
+sites()
+print("[SUCESSO] Código finalizado, confira o arquivo CSV.")
     
